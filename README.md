@@ -32,10 +32,12 @@
 
 - HTML5 and CSS3 for layout and styling
 - JavaScript (ES6+) for interactivity
-- openstreet Maps API
+- openstreet Maps API => https://unpkg.com/leaflet/dist/leaflet.css
 - Responsive Design with media queries
 - CSS Transitions and Animations for hover effects
-- Tailwind Css
+- Tailwind Css => https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css
+- Unicons => https://unicons.iconscout.com/release/v4.0.0/css/line.css
+
  ## Installation Instructions
 - Clone the repository:
 ```bash
@@ -65,6 +67,7 @@ index.html
 README.md
 JS scriptfile.js
 style.css
+
 
 ```
     
