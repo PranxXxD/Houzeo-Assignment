@@ -7,22 +7,26 @@ heartIcons.forEach((icon) => {
 });
 
 // Initialize the map
-  var map = L.map(document.getElementById("map")).setView([ 30.2672,-97.7431], 13); // Set the initial view with coordinates
+var map = L.map(document.getElementById("map")).setView(
+  [30.2672, -97.7431],
+  13
+); // Set the initial view with coordinates
 
 // Add the OpenStreetMap tile layer
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "© OpenStreetMap contributors",
+}).addTo(map);
 
 // Event handler for map clicks to add pins
-  async function onMapClick(e) {
-    L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
-      .bindPopup("Pinned Location: " + e.latlng.toString())
-      .openPopup();
-  }
+async function onMapClick(e) {
+  L.marker([e.latlng.lat, e.latlng.lng])
+    .addTo(map)
+    .bindPopup("Pinned Location: " + e.latlng.toString())
+    .openPopup();
+}
 
 // Attach the click event to the map
-  map.on('click', onMapClick);
+map.on("click", onMapClick);
 
 // Sample property data (in a real application, this would come from an API)
 const propertyData = [
@@ -36,9 +40,9 @@ const propertyData = [
     sqft: "608",
     address: "123 Main St, Austin, TX",
     daysOnMarket: 10,
-    src1 : "./assets/property1.png",
+    src1: "./assets/property1.png",
     src2: "./assets/property2.png",
-    src3: "./assets/property3.png"
+    src3: "./assets/property3.png",
   },
   {
     id: 2,
@@ -50,9 +54,9 @@ const propertyData = [
     sqft: "998",
     address: "456 Oak St, TX",
     daysOnMarket: 8,
-    src1 : "./assets/property2.png",
+    src1: "./assets/property2.png",
     src2: "./assets/property3.png",
-    src3: "./assets/property1.png"
+    src3: "./assets/property1.png",
   },
   {
     id: 3,
@@ -64,9 +68,9 @@ const propertyData = [
     sqft: "998",
     address: "456 Oak St, TX",
     daysOnMarket: 1,
-    src1 : "./assets/property3.png",
+    src1: "./assets/property3.png",
     src2: "./assets/property2.png",
-    src3: "./assets/property1.png"
+    src3: "./assets/property1.png",
   },
   {
     id: 4,
@@ -78,9 +82,9 @@ const propertyData = [
     sqft: "998",
     address: "johnson city, TX",
     daysOnMarket: 3,
-    src1 : "./assets/property1.png",
+    src1: "./assets/property1.png",
     src2: "./assets/property2.png",
-    src3: "./assets/property3.png"
+    src3: "./assets/property3.png",
   },
   {
     id: 5,
@@ -92,11 +96,10 @@ const propertyData = [
     sqft: "998",
     address: "johnson city, TX",
     daysOnMarket: 3,
-    src1 : "./assets/property2.png",
+    src1: "./assets/property2.png",
     src2: "./assets/property1.png",
     src3: "./assets/property3.png",
     propertyType: "Re-sale",
-
   },
   {
     id: 6,
@@ -108,9 +111,9 @@ const propertyData = [
     sqft: "998",
     address: "johnson city, TX",
     daysOnMarket: 3,
-    src1 : "./assets/property3.png",
+    src1: "./assets/property3.png",
     src2: "./assets/property2.png",
-    src3: "./assets/property1.png"
+    src3: "./assets/property1.png",
   },
   // Add more property listings here
 ];
@@ -127,8 +130,10 @@ function updateProperties() {
   const filteredProperties = propertyData.filter((property) => {
     const priceRange = document.getElementById("price").value;
     const beds = document.getElementById("beds").value;
-    const searchKeyWord = document.getElementById("location").value.toLowerCase(); // Convert to lowercase for case-insensitive search
-    
+    const searchKeyWord = document
+      .getElementById("location")
+      .value.toLowerCase(); // Convert to lowercase for case-insensitive search
+
     let match = true;
 
     // Filter based on price
@@ -145,13 +150,16 @@ function updateProperties() {
     }
 
     // Filter based on search keyword (location match)
-    if (searchKeyWord && !property.address.toLowerCase().includes(searchKeyWord)) {
+    if (
+      searchKeyWord &&
+      !property.address.toLowerCase().includes(searchKeyWord)
+    ) {
       match = false;
     }
 
-    if(searchKeyWord.length > 0){
-      document.getElementById('cancel-icon').style.display = 'none';
-      document.getElementById('search-icon').style.display = 'none';
+    if (searchKeyWord.length > 0) {
+      document.getElementById("cancel-icon").style.display = "none";
+      document.getElementById("search-icon").style.display = "none";
     }
 
     return match;
@@ -173,14 +181,18 @@ function updateProperties() {
               <img class="w-full h-26 rounded-tl-lg rounded-tr-lg hidden active slide" src=${property.src1} alt="property1">
               <img class="w-full h-26 hidden slide" src=${property.src2}  alt="property2">
               <img class="w-full h-26 hidden slide" src=${property.src3}  alt="property3">
+              <!-- Pagination Dots -->
             </div>
+            <div class="absolute bottom-2 flex justify-center w-full px-1">
+            <div class="flex justify-center mt-2">
+            <span class="dot h-3 w-3 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-3 w-3 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-3 w-3 mx-1 bg-white rounded-full cursor-pointer"></span>
           </div>
-          <!-- Pagination Dots -->
-          <div class="flex justify-center mt-2">
-            <span class="dot h-3 w-3 mx-1 bg-gray-400 rounded-full cursor-pointer"></span>
-            <span class="dot h-3 w-3 mx-1 bg-gray-400 rounded-full cursor-pointer"></span>
-            <span class="dot h-3 w-3 mx-1 bg-gray-400 rounded-full cursor-pointer"></span>
+            </div>
+           
           </div>
+          
         
           <!-- Property Info -->
           <div class="p-4">
@@ -205,30 +217,31 @@ function updateProperties() {
 
 // Function to initialize the sliders for each property
 function initializeSliders() {
-  document.querySelectorAll(".sliderWrapper").forEach((wrapper, index) => {
+  document.querySelectorAll(".sliderWrapper").forEach((wrapper) => {
     let currentIndex = 0;
     const slides = wrapper.querySelectorAll(".slide");
     const dots = wrapper.parentElement.querySelectorAll(".dot");
 
+    // Function to show the slide at the current index and update the active dot
     function showSlide(index) {
       slides.forEach((slide, i) => {
-        slide.classList.add("hidden");
-        dots[i].classList.remove("bg-black");
-        dots[i].classList.add("bg-gray-400");
+        slide.classList.add("hidden"); // Hide all slides
+        dots[i].classList.remove("bg-black", "bg-gray-400"); // Remove active classes from dots
+        dots[i].classList.add("bg-white"); // Set inactive dot color
       });
 
-      slides[index].classList.remove("hidden");
-      dots[index].classList.add("bg-black");
+      slides[index].classList.remove("hidden"); // Show the current slide
+      dots[index].classList.add("bg-gray-400"); // Highlight the active dot
     }
 
     // Initialize first slide
     showSlide(currentIndex);
 
-    // Add event listeners for dot navigation
+    // Event listeners for dot navigation
     dots.forEach((dot, dotIndex) => {
       dot.addEventListener("click", () => {
         currentIndex = dotIndex;
-        showSlide(currentIndex);
+        showSlide(currentIndex); // Update slide and dot on dot click
       });
     });
 
@@ -237,21 +250,20 @@ function initializeSliders() {
     let endX = 0;
 
     wrapper.addEventListener("touchstart", (e) => {
-      startX = e.touches[0].clientX;
+      startX = e.touches[0].clientX; // Capture the starting X coordinate
     });
 
     wrapper.addEventListener("touchend", (e) => {
-      endX = e.changedTouches[0].clientX;
+      endX = e.changedTouches[0].clientX; // Capture the ending X coordinate
 
       if (startX > endX + 50) {
-        // Swipe left
+        // Swipe left, go to the next slide
         currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
       } else if (startX < endX - 50) {
-        // Swipe right
+        // Swipe right, go to the previous slide
         currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        showSlide(currentIndex);
       }
+      showSlide(currentIndex); // Update slide and dot based on swipe
     });
   });
 }
