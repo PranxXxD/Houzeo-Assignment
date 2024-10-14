@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Real Estate Listings with Filters and Map</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    </head>
+
+    <body class="bg-white">
+        <!-- Header with Filters -->
+        <header
+            class="flex flex-col lg:flex-row items-center justify-between p-4 bg-white shadow-lg space-y-2 lg:space-y-0">
+            <div class="text-2xl font-bold">
+                <img src="/assets/new-logo.svg" alt="homo-logo" />
+            </div>
+        </header>
+        <!-- Filter component -->
+        <div class="flex flex-wrap lg:space-x-0 space-y-2 lg:space-y-2 lg:space-x-4 mt-5 items-center p-4">
+            <div class="flex w-full justify-between items-center">
+                <div class="relative mt-2">
+                    <input type="text" id="location"
+                        class="search-input p-2 border cursor-pointer rounded-3xl w-full lg:w-auto focus:border-blue-400"
+                        value=""
+                        placeholder="Austin, TX" />
+                        <span class="absolute w-14 top-2 flex right-6 px-1"> 
+                            <i id="cancel-icon" class="uil uil-cancel text-gray-400"></i>
+                        </span>
+                    <div class="absolute w-24 h-24 rounded-full top-2 flex justify-center right-0 px-1 search-container ">
+                        <i id="search-icon" class="cursor-pointer rounded-full uil uil-search search-icon text-gray-400 "></i>
+                    </div>
+                </div>
+                <div class="px-1 relative flex items-center rounded-full justify-center">
+                    <span id="Property-type" class="p-2 text-xs lg:px-4 border lg:hidden block cursor-pointer rounded-full w-full lg:w-auto">
+                        <i class="uil uil-filter p-2"></i></span>
+                </div>
+            </div>
+        
+
+            <div class="flex space-x-1 justify-between items-center w-full">
+                <select id="status" class="p-2 w-2/5 cursor-pointer px-4 border rounded-lg lg:w-auto active:bg-blue-900 focus:outline-none focus:ring focus:ring-blue-700 text-xs lg:text-sm">
+                    <option value="For Sale">
+                        For Sale
+                    </option>
+                    <option class="text-xs" value="For Rent">For Rent</option>
+                </select>
+                <select id="price" class="p-2 w-1/5 border text-xs lg:text-sm cursor-pointer rounded-lg lg:w-auto">
+                    <option value="any">Price</option>
+                    <option value="0-500000">$0 - $500,000</option>
+                    <option value="500000-1000000">$500,000 - $1,000,000</option>
+                    <option value="1000000+">$1,000,000+</option>
+                </select>
+                <button id="saveBtn"  onclick="updateProperties()" class="p-2 lg:hidden block cursor-pointer px-2 border rounded-2xl w-24 bg-blue-700 text-white lg:w-auto text-xs lg:text-sm ">
+                    Save Search
+                </button>
+            </div>
+
+            <select id="beds" class="p-2 lg:block hidden cursor-pointer text-xs lg:text-sm px-4 border rounded-lg w-full lg:w-auto">
+                <option value="any">Beds & Baths</option>
+                <option value="1">1 Bed</option>
+                <option value="2">2 Beds</option>
+                <option value="3">3 Beds</option>
+                <option value="4+">4+ Beds</option>
+            </select>
+
+            <select id="Property-type"
+                class="p-2 px-4 border hidden text-xs lg:text-sm lg:block cursor-pointer rounded-lg w-full lg:w-auto">
+                <option value="any">Property Type</option>
+                <option value="1">Sale</option>
+                <option value="2">Re-Sale</option>
+            </select>
+
+            <span id="Property-type" class="p-2 px-4 border lg:block hidden cursor-pointer rounded-lg w-full lg:w-auto">
+                <i class="uil uil-filter px-2"></i>Filters</span>
+
+            <button id="saveBtn" onclick="updateProperties()" class="p-2 hidden lg:block cursor-pointer px-4 border rounded-2xl w-full lg:w-auto hover:bg-blue-700 hover:text-white">
+                <i class="uil uil-pen px-2 hover:text-white"></i>Save
+            </button>
+        </div>
+        <!-- Main Content -->
+        <div class="flex flex-col md:flex-row p-4 space-y-4 md:space-y-0 md:space-x-4">
+            <!-- Map Section -->
+            <div class="h-full lg:w-1/2 p-1 bg-white shadow-lg rounded-lg">
+                <div id="map" class="w-full h-64 lg:h-screen bg-gray-300"></div>
+            </div>
+            <!-- Property Listings Section -->
+            <div class="w-full">
+                <h4 class="px-4 font-medium">
+                    Austin, TX real estate & homes for sale
+                </h4>
+                <div class="flex items-center justify-between text-xs text-gray-400 px-4">
+                    <span class="font-medium">2,010 Homes</span>
+                    <span class="font-medium">sort by :
+                        <span class="text-blue-400 p-2 font-medium">New Listing</span>
+                        <select class="text-blue-400 font-medium" name="NewList" id="">
+                            <option value="Newest">Newest</option>
+                            <option value="Oldest">Oldest</option>
+                            <option value="Latest">Latest</option>
+                            <option value="Top">Top</option>
+                        </select></span>
+                </div>
+                <div id="properties" class="md:w-full p-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <h2 class="text-xl font-semibold">Property Listings</h2>
+                    <!-- Properties will be dynamically updated here -->
+                </div>
+            </div>
+        </div>
+        <script src="./scriptfile.js" async></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    </body>
+
+</html>

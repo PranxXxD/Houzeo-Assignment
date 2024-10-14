@@ -1,0 +1,48 @@
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* CSS for transition effects */
+/* Change border color of the input when focused */
+.search-input:focus {
+  border-color: #2876C1; /* Blue border */
+  outline: none; /* Remove default outline */
+}
+
+/* Change the icon color when the input is focused */
+.search-container:focus-within .search-icon {
+  color: #2876C1 !important; /* Blue color for the search icon */
+}
+
+/* Heart icon pulse effect */
+.heart {
+  transition: transform 0.3s;
+}
+
+.heart:hover {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+/* Card hover effect */
+.card {
+  transition: box-shadow 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+
