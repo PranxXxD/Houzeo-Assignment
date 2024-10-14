@@ -11,9 +11,9 @@ body{
   outline: none; /* Remove default outline */
 }
 
-/* Change the icon color when the input is focused */
-.search-container:focus-within .search-icon {
-  color: #2876C1 !important; /* Blue color for the search icon */
+
+.bg-color:hover{
+  background:#0B5AA5;
 }
 
 /* Heart icon pulse effect */

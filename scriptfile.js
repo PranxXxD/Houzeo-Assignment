@@ -28,6 +28,42 @@ async function onMapClick(e) {
 // Attach the click event to the map
 map.on("click", onMapClick);
 
+// Function to open the map modal
+function OpenMap() {
+  const mapModal = document.getElementById("mapModal");
+  const closeModal = document.getElementById("closeModal");
+  const openMapBtn = document.getElementById("openMapBtn");
+  mapModal.classList.remove("hidden"); // Show the modal
+  closeModal.classList.remove("hidden"); // Show the modal
+  openMapBtn.classList.add("hidden"); // Show the modal
+  const mobileMap = L.map(mapModal).setView(
+    [30.2672, -97.7431],
+    13
+  );
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: "© OpenStreetMap contributors",
+  }).addTo(mobileMap);
+  mobileMap.on("click", onMapClick);
+
+  console.log("Map Opened");
+}
+
+// Function to close the map modal
+function CloseMap() {
+  const mapModal = document.getElementById("mapModal");
+  const openMapBtn = document.getElementById("openMapBtn");
+  const closeModal = document.getElementById("closeModal");
+
+  openMapBtn.classList.remove("hidden")
+  mapModal.classList.add("hidden"); // Hide the modal
+  closeModal.classList.add("hidden");
+  console.log("Map Closed");
+}
+
+// Event listeners for opening and closing the modal
+document.getElementById("openMapBtn").addEventListener("click", OpenMap);
+document.getElementById("closeModal").addEventListener("click", CloseMap);
+
 // Sample property data (in a real application, this would come from an API)
 const propertyData = [
   {
@@ -38,11 +74,12 @@ const propertyData = [
     beds: 3,
     baths: 2,
     sqft: "608",
-    address: "123 Main St, Austin, TX",
+    address: "2856 Meadow Park Ave, Henderson, NV 89052",
     daysOnMarket: 10,
     src1: "./assets/property1.png",
     src2: "./assets/property2.png",
     src3: "./assets/property3.png",
+    broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
     id: 2,
@@ -52,11 +89,12 @@ const propertyData = [
     beds: 2,
     baths: 1,
     sqft: "998",
-    address: "456 Oak St, TX",
+    address: "2856 Meadow Park Ave, Henderson, NV 89052",
     daysOnMarket: 8,
     src1: "./assets/property2.png",
     src2: "./assets/property3.png",
     src3: "./assets/property1.png",
+    broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
     id: 3,
@@ -66,11 +104,12 @@ const propertyData = [
     beds: 2,
     baths: 1,
     sqft: "998",
-    address: "456 Oak St, TX",
+    address: "2856 Meadow Park Ave, Henderson, NV 89052",
     daysOnMarket: 1,
     src1: "./assets/property3.png",
     src2: "./assets/property2.png",
     src3: "./assets/property1.png",
+    broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
     id: 4,
@@ -80,11 +119,12 @@ const propertyData = [
     beds: 4,
     baths: 1,
     sqft: "998",
-    address: "johnson city, TX",
+    address: "2856 Meadow Park Ave, Henderson, NV 89052",
     daysOnMarket: 3,
     src1: "./assets/property1.png",
     src2: "./assets/property2.png",
     src3: "./assets/property3.png",
+    broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
     id: 5,
@@ -94,12 +134,13 @@ const propertyData = [
     beds: 4,
     baths: 1,
     sqft: "998",
-    address: "johnson city, TX",
+    address: "2856 Meadow Park Ave, Henderson, NV 89052",
     daysOnMarket: 3,
     src1: "./assets/property2.png",
     src2: "./assets/property1.png",
     src3: "./assets/property3.png",
     propertyType: "Re-sale",
+    broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
     id: 6,
@@ -109,11 +150,12 @@ const propertyData = [
     beds: 4,
     baths: 1,
     sqft: "998",
-    address: "johnson city, TX",
+    address: "2856 Meadow Park Ave, Henderson, NV 89052",
     daysOnMarket: 3,
     src1: "./assets/property3.png",
     src2: "./assets/property2.png",
     src3: "./assets/property1.png",
+    broker: "Sotheby's International Realty",
   },
   // Add more property listings here
 ];
@@ -122,7 +164,13 @@ const propertyData = [
 const propertiesDiv = document.getElementById("properties");
 
 // Event listener for the search input
-document.getElementById("location").addEventListener("input", updateProperties);
+ document.getElementById("location").addEventListener("input", updateProperties);
+
+ function ClrInputData() {
+  const InputID = document.getElementById("location");
+  console.log("click");
+  InputID.value = "";  // Clears the input field
+}
 
 function updateProperties() {
   propertiesDiv.innerHTML = ""; // Clear existing listings
@@ -158,9 +206,10 @@ function updateProperties() {
     }
 
     if (searchKeyWord.length > 0) {
-      document.getElementById("cancel-icon").style.display = "none";
-      document.getElementById("search-icon").style.display = "none";
+      document.getElementById("search-icon").style.display = "none"; // Hide search icon
+      document.getElementById("cancel-icon").style.display = "block"; // Show cancel icon
     }
+    
 
     return match;
   });
@@ -177,23 +226,33 @@ function updateProperties() {
               <span class="heart text-white text-lg cursor-pointer">
               <i class="uil uil-heart"></i></span>
             </div>
+            <div class="absolute lg:top-28 top-20 md:top-24 w-full flex flex-row place-items-center justify-between">
+            <img class="arrow-prev w-12 cursor-pointer" src="./assets/left-arrow.png" alt="left-arrow" />
+            <img class="arrow-next w-12 cursor-pointer" src="./assets/right-arrow.png" alt="right-arrow" />
+       
+            </div>
             <div class="flex transition-transform duration-500 ease-in-out">
-              <img class="w-full h-26 rounded-tl-lg rounded-tr-lg hidden active slide" src=${property.src1} alt="property1">
-              <img class="w-full h-26 hidden slide" src=${property.src2}  alt="property2">
-              <img class="w-full h-26 hidden slide" src=${property.src3}  alt="property3">
-              <!-- Pagination Dots -->
-            </div>
-            <div class="absolute bottom-2 flex justify-center w-full px-1">
-            <div class="flex justify-center mt-2">
-            <span class="dot h-3 w-3 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-3 w-3 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-3 w-3 mx-1 bg-white rounded-full cursor-pointer"></span>
-          </div>
-            </div>
-           
+            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover active slide" src=${property.src1} alt="property1">
+            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src2} alt="property2">
+            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src3} alt="property3">
           </div>
           
-        
+            <div class="relative w-full h-full"> 
+            <!-- Add relative positioning to parent container -->
+          <div class="absolute bottom-4 right-2 lg:right-2 px-1">
+          <img class="w-32 rounded-lg" src="./assets/overlaying.png" alt="overlay-img">
+          </div>
+            </div>
+            <!-- Pagination Dots -->
+            <div class="absolute bottom-4 flex justify-center w-full px-1">
+            <div class="flex justify-center mt-2">
+            <span class="dot h-2 w-2 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-2 w-2 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-2 w-2 mx-1 bg-white rounded-full cursor-pointer"></span>
+          </div>
+          </div>
+        </div>
+           
           <!-- Property Info -->
           <div class="p-4">
             <div class="flex flex-row items-center justify-between mt-2">
@@ -204,6 +263,8 @@ function updateProperties() {
               <span class="text-xs"> <span class="text-blue-800 font-semibold">${property.beds}</span> Beds • $<span class="text-blue-800 font-semibold">${property.baths}</span> Baths • <span class="text-blue-800 font-semibold">${property.sqft}</span> sqft.</span>
             </div>
             <span class="text-xs">${property.address}</span>
+            <br />
+            <span class="text-xs text-gray-400">${property.broker}</span>
           </div>
         </div>
       </div>
@@ -221,7 +282,8 @@ function initializeSliders() {
     let currentIndex = 0;
     const slides = wrapper.querySelectorAll(".slide");
     const dots = wrapper.parentElement.querySelectorAll(".dot");
-
+    const nextArrow = wrapper.parentElement.querySelector(".arrow-next");
+    const prevArrow = wrapper.parentElement.querySelector(".arrow-prev");
     // Function to show the slide at the current index and update the active dot
     function showSlide(index) {
       slides.forEach((slide, i) => {
@@ -245,6 +307,22 @@ function initializeSliders() {
       });
     });
 
+    // Event listener for next arrow click
+    if (nextArrow) {
+      nextArrow.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % slides.length; // Increment index
+        showSlide(currentIndex); // Show the next slide
+      });
+    }
+
+    // Event listener for previous arrow click
+    if (prevArrow) {
+      prevArrow.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Decrement index
+        showSlide(currentIndex); // Show the previous slide
+      });
+    }
+
     // Swipe functionality for mobile
     let startX = 0;
     let endX = 0;
@@ -267,7 +345,6 @@ function initializeSliders() {
     });
   });
 }
-
 
 // Initial load
 window.onload = updateProperties;
