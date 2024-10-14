@@ -79,6 +79,7 @@ const propertyData = [
     src1: "./assets/property1.png",
     src2: "./assets/property2.png",
     src3: "./assets/property3.png",
+    src4: "./assets/interior.png",
     broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
@@ -94,6 +95,7 @@ const propertyData = [
     src1: "./assets/property2.png",
     src2: "./assets/property3.png",
     src3: "./assets/property1.png",
+    src4: "./assets/interior.png",
     broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
@@ -109,6 +111,7 @@ const propertyData = [
     src1: "./assets/property3.png",
     src2: "./assets/property2.png",
     src3: "./assets/property1.png",
+    src4: "./assets/interior.png",
     broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
@@ -124,6 +127,7 @@ const propertyData = [
     src1: "./assets/property1.png",
     src2: "./assets/property2.png",
     src3: "./assets/property3.png",
+    src4: "./assets/interior.png",
     broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   {
@@ -139,6 +143,7 @@ const propertyData = [
     src1: "./assets/property2.png",
     src2: "./assets/property1.png",
     src3: "./assets/property3.png",
+    src4: "./assets/interior.png",
     propertyType: "Re-sale",
     broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
@@ -155,6 +160,7 @@ const propertyData = [
     src1: "./assets/property3.png",
     src2: "./assets/property2.png",
     src3: "./assets/property1.png",
+    src4: "./assets/interior.png",
     broker: "Sotheby's International Realty",
   },
   // Add more property listings here
@@ -234,21 +240,23 @@ function updateProperties() {
             <div class="flex transition-transform duration-500 ease-in-out">
             <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover active slide" src=${property.src1} alt="property1">
             <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src2} alt="property2">
-            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src3} alt="property3">
+            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src3} alt="property3">   
+            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src4} alt="interior">
           </div>
           
             <div class="relative w-full h-full"> 
             <!-- Add relative positioning to parent container -->
-          <div class="absolute bottom-4 right-2 lg:right-2 px-1">
+          <div class="absolute bottom-6 right-2 lg:right-2 px-1">
           <img class="w-32 rounded-lg" src="./assets/overlaying.png" alt="overlay-img">
           </div>
             </div>
             <!-- Pagination Dots -->
             <div class="absolute bottom-4 flex justify-center w-full px-1">
-            <div class="flex justify-center mt-2">
-            <span class="dot h-2 w-2 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-2 w-2 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-2 w-2 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <div class="flex justify-center items-center">
+            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
+            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
           </div>
           </div>
         </div>
@@ -288,13 +296,15 @@ function initializeSliders() {
     function showSlide(index) {
       slides.forEach((slide, i) => {
         slide.classList.add("hidden"); // Hide all slides
-        dots[i].classList.remove("bg-black", "bg-gray-400"); // Remove active classes from dots
-        dots[i].classList.add("bg-white"); // Set inactive dot color
+        dots[i].classList.remove("bg-black", "bg-gray-400", "h-3", "w-3"); // Remove active classes from dots
+        dots[i].classList.add("bg-white", "h-1", "w-1"); // Set inactive dot color and size
       });
-
+    
       slides[index].classList.remove("hidden"); // Show the current slide
-      dots[index].classList.add("bg-gray-400"); // Highlight the active dot
+      dots[index].classList.add("bg-gray-400", "h-3", "w-3"); // Highlight the active dot with larger size
     }
+    
+    
 
     // Initialize first slide
     showSlide(currentIndex);
