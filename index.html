@@ -20,7 +20,6 @@
 
         <!-- Filter component -->
         <div class="filter-wrapper">
-            <div class="filter-input-group">
                 <div class="search-input-container">
                     <input type="text" id="location" class="search-input" value="" placeholder="Austin, TX" />
                     <span class="icon-wrapper">
@@ -28,13 +27,12 @@
                             alt="cross-cancel" />
                         <img class="icon-search" id="search-icon" src="/assets/search-icon.png" alt="search-icon" />
                     </span>
+                    <div class="filter-icon-wrapper">
+                        <img class="icon-filter" src="/assets/mob-filter.png" alt="filter-icon" />
+                    </div>
                 </div>
-                <div class="filter-icon-wrapper">
-                    <img class="icon-filter" src="/assets/mob-filter.png" alt="filter-icon" />
-                </div>
-            </div>
+               
 
-            <div class="filter-select-group">
                 <select id="status" class="filter-select">
                     <option value="For Sale">For Sale</option>
                     <option value="For Rent">For Rent</option>
@@ -46,9 +44,7 @@
                     <option value="1000000+">$1,000,000+</option>
                 </select>
                 <button id="saveBtn" onclick="updateProperties()" class="save-search-btn">Save Search</button>
-            </div>
 
-            <div class="filter-options-group">
                 <select id="beds" class="beds-baths-select">
                     <option value="any">Beds & Baths</option>
                     <option value="1">1 Bed</option>
@@ -69,7 +65,6 @@
                 <button id="saveBtn" onclick="updateProperties()" class="save-search-btn-lg">
                     <i class="uil uil-pen"></i>Save
                 </button>
-            </div>
         </div>
 
         <!-- Main Content -->
@@ -104,9 +99,9 @@
                     <span class="homes-count">2,010 Homes</span>
                     <span class="sort-by">
                         sort by:
-                        <span class="sort-by-text">New Listing</span>
+                        <span class="sort-by-text"></span>
                         <select class="sort-by-select">
-                            <option value="Newest">Newest</option>
+                            <option value="Newest">Newest Listing</option>
                             <option value="Oldest">Oldest</option>
                             <option value="Latest">Latest</option>
                             <option value="Top">Top</option>
