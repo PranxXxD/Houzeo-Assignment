@@ -36,10 +36,7 @@ function OpenMap() {
   mapModal.classList.remove("hidden"); // Show the modal
   closeModal.classList.remove("hidden"); // Show the modal
   openMapBtn.classList.add("hidden"); // Show the modal
-  const mobileMap = L.map(mapModal).setView(
-    [30.2672, -97.7431],
-    13
-  );
+  const mobileMap = L.map(mapModal).setView([30.2672, -97.7431], 13);
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "© OpenStreetMap contributors",
   }).addTo(mobileMap);
@@ -54,7 +51,7 @@ function CloseMap() {
   const openMapBtn = document.getElementById("openMapBtn");
   const closeModal = document.getElementById("closeModal");
 
-  openMapBtn.classList.remove("hidden")
+  openMapBtn.classList.remove("hidden");
   mapModal.classList.add("hidden"); // Hide the modal
   closeModal.classList.add("hidden");
   console.log("Map Closed");
@@ -161,7 +158,7 @@ const propertyData = [
     src2: "./assets/property2.png",
     src3: "./assets/property1.png",
     src4: "./assets/interior.png",
-    broker: "Sotheby's International Realty",
+    broker: "Nashville (Real Tracs Mid) MLS-TN as distributed by MLS GRID",
   },
   // Add more property listings here
 ];
@@ -170,12 +167,12 @@ const propertyData = [
 const propertiesDiv = document.getElementById("properties");
 
 // Event listener for the search input
- document.getElementById("location").addEventListener("input", updateProperties);
+document.getElementById("location").addEventListener("input", updateProperties);
 
- function ClrInputData() {
+function ClrInputData() {
   const InputID = document.getElementById("location");
   console.log("click");
-  InputID.value = "";  // Clears the input field
+  InputID.value = ""; // Clears the input field
 }
 
 function updateProperties() {
@@ -215,7 +212,6 @@ function updateProperties() {
       document.getElementById("search-icon").style.display = "none"; // Hide search icon
       document.getElementById("cancel-icon").style.display = "block"; // Show cancel icon
     }
-    
 
     return match;
   });
@@ -223,60 +219,57 @@ function updateProperties() {
   // Display filtered properties
   filteredProperties.forEach((property) => {
     const propertyCard = `
-      <div class="card bg-white border rounded-lg">
-        <div class="flex flex-col">
-          <!-- Image Slider -->
-          <div class="relative w-full overflow-hidden sliderWrapper">
-            <div class="absolute top-2 flex justify-between w-full px-1">
-              <span class="border font-medium p-1 px-2 rounded-2xl text-xs bg-white bg-opacity-100">${property.daysOnMarket} days on Houzeo</span>
-              <span class="heart text-white text-lg cursor-pointer">
-              <i class="uil uil-heart"></i></span>
-            </div>
-            <div class="absolute lg:top-28 top-20 md:top-24 w-full flex flex-row place-items-center justify-between">
-            <img class="arrow-prev w-12 cursor-pointer" src="./assets/left-arrow.png" alt="left-arrow" />
-            <img class="arrow-next w-12 cursor-pointer" src="./assets/right-arrow.png" alt="right-arrow" />
-       
-            </div>
-            <div class="flex transition-transform duration-500 ease-in-out">
-            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover active slide" src=${property.src1} alt="property1">
-            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src2} alt="property2">
-            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src3} alt="property3">   
-            <img class="w-full h-48 md:h-60 rounded-tl-lg rounded-tr-lg object-cover slide" src=${property.src4} alt="interior">
-          </div>
-          
-            <div class="relative w-full h-full"> 
-            <!-- Add relative positioning to parent container -->
-          <div class="absolute bottom-6 right-2 lg:right-2 px-1">
-          <img class="w-32 rounded-lg" src="./assets/overlaying.png" alt="overlay-img">
-          </div>
-            </div>
-            <!-- Pagination Dots -->
-            <div class="absolute bottom-4 flex justify-center w-full px-1">
-            <div class="flex justify-center items-center">
-            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
-            <span class="dot h-1 w-1 mx-1 bg-white rounded-full cursor-pointer"></span>
-          </div>
-          </div>
+  <div class="card">
+    <div class="flex flex-col">
+      <!-- Image Slider -->
+      <div class="sliderWrapper">
+        <div class="slider-header">
+          <span class="property-days">${property.daysOnMarket} days on Houzeo</span>
+          <span class="heart">
+            <i class="uil uil-heart"></i>
+          </span>
         </div>
+        <div class="slider-arrows">
+          <img class="arrow-prev" src="./assets/left-arrow.png" alt="left-arrow" />
+          <img class="arrow-next" src="./assets/right-arrow.png" alt="right-arrow" />
+        </div>
+        <div class="slider-images">
+          <img class="property-img slide" src="${property.src1}" alt="property1">
+          <img class="property-img slide none" src="${property.src2}" alt="property2">
+          <img class="property-img slide none" src="${property.src3}" alt="property3">
+          <img class="property-img slide none" src="${property.src4}" alt="interior">
+        </div>
+        <div class="overlay-container">
+          <img class="overlay-img" src="./assets/overlaying.png" alt="overlay-img">
+        </div>
+        <!-- Pagination Dots -->
+        <div class="slider-pagination">
+          <div class="pagination-dots">
+            <span class="dot bg-gray-400"></span>
+            <span class="dot bg-gray-400"></span>
+            <span class="dot bg-gray-400"></span>
+            <span class="dot bg-gray-400"></span>
            
-          <!-- Property Info -->
-          <div class="p-4">
-            <div class="flex flex-row items-center justify-between mt-2">
-              <span class="text-xs border font-medium p-1 rounded-2xl"> <span>🟢</span>${property.type} For Sale</span> <span class="text-xs"><i class="uil uil-eye text-lg"></i> 2.3k</span>
-            </div>
-            <div class="flex items-center justify-between">
-              <p class="text-blue-800 text-md font-semibold">${property.price}</p>
-              <span class="text-xs"> <span class="text-blue-800 font-semibold">${property.beds}</span> Beds • $<span class="text-blue-800 font-semibold">${property.baths}</span> Baths • <span class="text-blue-800 font-semibold">${property.sqft}</span> sqft.</span>
-            </div>
-            <span class="text-xs">${property.address}</span>
-            <br />
-            <span class="text-xs text-gray-400">${property.broker}</span>
           </div>
         </div>
       </div>
-     `;
+      <!-- Property Info -->
+      <div class="property-info">
+        <div class="property-header">
+          <span class="property-type"><span>🟢</span> ${property.type} For Sale</span>
+          <span class="property-views"><i class="uil uil-eye"></i> 2.3k</span>
+        </div>
+        <div class="property-details">
+          <p class="property-price">${property.price}</p>
+          <span class="property-features"> <strong style="color:#0B5AA5", "font-family:600">${property.beds}</strong> Beds • <strong style="color:#0B5AA5", "font-family:600">${property.baths}</strong>  Baths • <strong style="color:#0B5AA5", "font-family:600">${property.sqft}</strong>  sqft.</span>
+        </div>
+        <span class="property-address">${property.address}</span>
+        <br />
+        <span class="property-broker">${property.broker}</span>
+      </div>
+    </div>
+  </div>`;
+
     propertiesDiv.innerHTML += propertyCard;
   });
 
@@ -295,16 +288,15 @@ function initializeSliders() {
     // Function to show the slide at the current index and update the active dot
     function showSlide(index) {
       slides.forEach((slide, i) => {
-        slide.classList.add("hidden"); // Hide all slides
-        dots[i].classList.remove("bg-black", "bg-gray-400", "h-3", "w-3"); // Remove active classes from dots
+        slide.classList.add("none"); // Hide all slides
+        dots[i].classList.remove( "bg-gray-400"); // Remove active classes from dots
         dots[i].classList.add("bg-white", "h-1", "w-1"); // Set inactive dot color and size
       });
-    
-      slides[index].classList.remove("hidden"); // Show the current slide
+
+      slides[index].classList.remove("none"); // Show the current slide
+      dots[index].classList.remove("bg-white", "h-1", "w-1"); // Highlight the active dot with larger size
       dots[index].classList.add("bg-gray-400", "h-3", "w-3"); // Highlight the active dot with larger size
     }
-    
-    
 
     // Initialize first slide
     showSlide(currentIndex);
@@ -321,6 +313,7 @@ function initializeSliders() {
     if (nextArrow) {
       nextArrow.addEventListener("click", () => {
         currentIndex = (currentIndex + 1) % slides.length; // Increment index
+        // console.log(currentIndex)
         showSlide(currentIndex); // Show the next slide
       });
     }

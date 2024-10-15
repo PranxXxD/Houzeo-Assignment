@@ -1,7 +1,8 @@
-body{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif, 'Times New Roman', Times, serif;
 }
 
 /* CSS for transition effects */
@@ -44,5 +45,694 @@ body{
 .card:hover {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
+
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+  width: auto;
+}
+
+/* Filter Component */
+.filter-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  gap: 8px;
+}
+
+.filter-input-group {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 50%;
+  gap: 16px;
+}
+
+.search-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.search-input {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 50px;
+  width: 90%;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  border-color: #3b82f6;
+}
+
+.icon-wrapper {
+  position: absolute;
+  top: 4px;
+  right: 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.icon-cross,
+.icon-search {
+  cursor: pointer;
+  width: 24px;
+}
+
+.filter-icon-wrapper {
+  display: none;
+}
+
+/* Filter Selects */
+.filter-select-group {
+  display: flex;
+  width: 50%;
+  justify-content: space-evenly;
+  gap: 8px;
+}
+
+.filter-select {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  
+}
+
+
+.filter-options-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.beds-baths-select,
+.property-type-select {
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Filter Button */
+.filter-button {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+
+.filter-icon {
+  width: 16px;
+}
+
+.filter-text {
+  font-weight: 600;
+}
+
+/* Main Content */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  gap: 16px;
+}
+
+
+
+.map-inside-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 8px;
+
+}
+
+
+
+.map-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.map-modal-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.map-modal-map {
+  width: 100%;
+  height: 100%;
+  background-color: #e5e7eb;
+}
+
+.hidden{
+  display: none;
+}
+
+/* Property Listings */
+.property-listings {
+  width: 100%;
+}
+
+.property-listing-title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 8px 0;
+  margin: 2px;
+}
+
+.property-listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  padding-bottom: 5px;
+}
+
+.homes-count {
+  font-weight: 600;
+  color: gray;
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+  color: gray;
+}
+
+.sort-by-text,.sort-by-select {
+  margin-right: 8px;
+  color: #0B5AA5;
+}
+
+.property-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.property-listing-heading {
+  width: 100%;
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding-bottom: 16px;
+}
+
+/* General Styles */
+.card {
+  background-color: white;
+  border: 1px solid #e2e8f0; /* Light gray border color */
+  border-radius: 0.5rem; /* Rounded corners */
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+}
+
+.bg-gray-400{
+  background-color: gray;
+}
+.h-3{
+  height: 8px;
+}
+.w-3{
+  width: 8px;
+}
+.h-1{
+  height: 6px;
+}
+.w-1{
+  width: 6px;
+}
+.bg-white{
+  background: #ffff;
+}
+.none{
+  display: none;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+/* Image Slider */
+.sliderWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider-header {
+  position: absolute;
+  top: 0.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem;
+}
+
+.property-days {
+  background: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+
+.heart {
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  right: 18px;
+}
+
+.slider-arrows {
+  position: absolute;
+  top: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow-prev,
+.arrow-next {
+  width: 3rem;
+  cursor: pointer;
+}
+
+.slider-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.property-img {
+  width: 100%;
+  height: 12rem;
+  object-fit: cover;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+}
+
+/* Overlay Image */
+.overlay-container {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 0.5rem;
+}
+
+.overlay-img {
+  width: 8rem;
+  border-radius: 0.5rem;
+}
+
+/* Pagination Dots */
+.slider-pagination {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  height: 0.25rem;
+  width: 0.25rem;
+  margin: 0 0.25rem;
+  background-color: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Property Info */
+.property-info {
+  padding: 1rem;
+}
+
+.property-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.property-type {
+  font-size: 0.75rem;
+  border: 1px solid #e2e8f0;
+  padding: 0.25rem;
+  border-radius: 1rem;
+}
+
+.property-views {
+  font-size: 0.75rem;
+}
+
+.property-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.property-price {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.property-features {
+  font-size: 0.75rem;
+}
+
+.property-address,
+.property-broker {
+  font-size: 0.75rem;
+}
+
+.property-broker {
+  color: #9ca3af;
+}
+
+.save-search-btn-lg{
+  background-color: #ffff;
+  border: 1px solid #9ca3af;
+  padding: 8px 16px;
+  display: flex;
+  border-radius: 8px;
+  gap: 4px;
+
+}
+.save-search-btn-lg:hover{
+  background-color: #0B5AA5;
+  cursor: pointer;
+  color: white;
+
+}
+
+.save-search-btn{
+  display: none;
+}
+
+.open-map-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #1d4ed8;
+  color: white;
+  border-radius: 24px;
+  z-index: 10;
+}
+.close-modal-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1d4ed8;
+  border-radius: 50%;
+  padding: 8px;
+  z-index: 50;
+}
+/* Media Queries for Responsiveness */
+
+/* Mobile Devices (max-width: 640px) */
+@media (max-width: 480px) {
+  .header {
+      padding: 12px;
+  }
+
+  .filter-wrapper {
+      padding: 12px;
+      flex-wrap: wrap;
+  }
+
+  .search-input-container {
+      width: 100%;
+  }
+
+  .filter-select-group {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .filter-options-group {
+    display: none;
+  }
+
+  .main-content {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+  }
+ 
+  .hidden{
+    display: none;
+  }
+
+  .open-map-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #1d4ed8;
+    color: white;
+    border-radius: 24px;
+    z-index: 10;
+  }
+
+  /* Mobile map layout */
+
+
+.close-modal-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1d4ed8;
+  border-radius: 50%;
+  padding: 8px;
+  z-index: 50;
+}
+
+  .save-search-btn {
+    padding: 8px 16px;
+    background-color: #0B5AA5;
+    color: white;
+    border-radius: 24px;
+    cursor: pointer;
+    display: block;
+  }
+
+  .filter-select-group,.filter-select,.filter-select {
+    width: auto;
+  }
+  
+  .property-img {
+    height: 10rem;
+  }
+  .beds-baths-select,.property-type-select,.filter-button,.save-search-btn-lg{
+    display: none;
+  }
+  .filter-input-group{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .filter-icon-wrapper{
+    display: block;
+  }
+
+  .icon-filter{
+    width: 2rem;
+  }
+  
+  .slider-arrows{
+    top: 4rem;
+  }
+ 
+}
+
+/* Tablets (max-width: 768px) */
+@media (max-width: 768px) {
+  .filter-wrapper {
+      padding: 12px;
+      gap: 8px;
+  }
+
+  .search-input-container {
+      width: 100%;
+  }
+
+  .filter-select-group {
+      width: 100%;
+      flex-direction: row;
+      gap: 4px;
+  }
+
+  .filter-options-group {
+      display: none;
+  }
+
+  .map-container {
+      display: none;
+  }
+
+ 
+  
+  .open-map-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #1d4ed8;
+    color: white;
+    border-radius: 24px;
+    z-index: 10;
+  }
+
+  /* Mobile map layout */
+.close-modal-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1d4ed8;
+  border-radius: 50%;
+  padding: 8px;
+  z-index: 50;
+}
+  .save-search-btn {
+    padding: 8px 16px;
+    background-color: #0B5AA5;
+    color: white;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+
+  
+  .search-input
+  {
+    width: 95%;
+  }
+
+  .icon-wrapper{
+    top: 5px;
+    right: 20px;
+  }
+
+  .filter-select-group{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .filter-select,.filter-select {
+    width: 30%;
+  }
+  
+  
+}
+
+
+/* Desktops (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .filter-wrapper {
+      padding: 20px;
+  }
+
+  .filter-input-group {
+    width: 25%;
+  }
+
+  .filter-select-group{
+    width: 25%;
+  }
+  
+  .filter-options-group{
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .main-content {
+      flex-direction: row;
+      gap: 24px;
+  }
+
+  .map-container {
+      width: 100%;
+      height: 100vh;
+  }
+  .open-map-btn{
+    display: none;
+  }
+
+  .property-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+  }
+
+  .property-listing-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+  }
+ 
+  .property-img {
+    height: 16rem;
+  }
+  .save-search-btn{
+    display: none;
+   }
+   
+}
+
 
 
