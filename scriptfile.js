@@ -71,7 +71,7 @@ const propertyData = [
     beds: 3,
     baths: 2,
     sqft: "608",
-    address: "2856 Meadow Park Ave, Henderson, NV 89052",
+    address: " Henderson, NV 89052",
     daysOnMarket: 10,
     src1: "./assets/property1.png",
     src2: "./assets/property2.png",
@@ -87,7 +87,7 @@ const propertyData = [
     beds: 2,
     baths: 1,
     sqft: "998",
-    address: "2856 Meadow Park Ave, Henderson, NV 89052",
+    address: " Henderson, NV 89052",
     daysOnMarket: 8,
     src1: "./assets/property2.png",
     src2: "./assets/property3.png",
@@ -103,7 +103,7 @@ const propertyData = [
     beds: 2,
     baths: 1,
     sqft: "998",
-    address: "2856 Meadow Park Ave, Henderson, NV 89052",
+    address: " Henderson, NV 89052",
     daysOnMarket: 1,
     src1: "./assets/property3.png",
     src2: "./assets/property2.png",
@@ -119,7 +119,7 @@ const propertyData = [
     beds: 4,
     baths: 1,
     sqft: "998",
-    address: "2856 Meadow Park Ave, Henderson, NV 89052",
+    address: " Henderson, NV 89052",
     daysOnMarket: 3,
     src1: "./assets/property1.png",
     src2: "./assets/property2.png",
@@ -135,7 +135,7 @@ const propertyData = [
     beds: 4,
     baths: 1,
     sqft: "998",
-    address: "2856 Meadow Park Ave, Henderson, NV 89052",
+    address: " Henderson, NV 89052",
     daysOnMarket: 3,
     src1: "./assets/property2.png",
     src2: "./assets/property1.png",
@@ -263,7 +263,7 @@ function updateProperties() {
           <p class="property-price">${property.price}</p>
           <span class="property-features"> <strong style="color:#0B5AA5", "font-family:600">${property.beds}</strong> Beds • <strong style="color:#0B5AA5", "font-family:600">${property.baths}</strong>  Baths • <strong style="color:#0B5AA5", "font-family:600">${property.sqft}</strong>  sqft.</span>
         </div>
-        <span class="property-address">${property.address}</span>
+        <span class="property-address"><strong>2856 Meadow Park Ave,</strong>${property.address}</span>
         <br />
         <span class="property-broker">${property.broker}</span>
       </div>
